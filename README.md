@@ -10,7 +10,14 @@ Ipay88 payment gateway module.
 I've make this project available to install via [Composer](https://getcomposer.org/) with following command:
 
 ```bash
-$ composer require karyamedia/ipay88 dev-master
+composer require alvarezallen99/ipay88 dev-master
+```
+
+## env
+```bash
+IPAY88_URL=""
+IPAY88_MERCHANT_CODE=""
+IPAY88_MERCHANT_KEY=""
 ```
 
 ## Example Controller
@@ -20,21 +27,25 @@ $ composer require karyamedia/ipay88 dev-master
 
 class Payment {
 
-	protected $_merchantCode;
-	protected $_merchantKey;
+	protected $merchantCode;
+	protected $merchantKey;
+    	protected $payment_response;
+    	protected $backend_response;
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->_merchantCode = 'xxxxxx'; //MerchantCode confidential
-		$this->_merchantKey = 'xxxxxxxxx'; //MerchantKey confidential
+		$this->merchantCode = env('IPAY88_MERCHANT_CODE'); //MerchantCode confidential
+		$this->merchantKey = env('IPAY88_MERCHANT_KEY'); //MerchantKey confidential
+		$this->payment_response = 'http://example.com/response';
+        	$this->backend_response = 'http://example.com/backend';
 	}
 
 	public function index()
 	{
-		$request = new IPay88\Payment\Request($this->_merchantKey);
+		$request = new IPay88\Payment\Request($this->merchantKey);
 		$this->_data = array(
-			'merchantCode' => $request->setMerchantCode($this->_merchantCode),
+			'merchantCode' => $request->setMerchantCode($this->merchantCode),
 			'paymentId' =>  $request->setPaymentId(1),
 			'refNo' => $request->setRefNo('EXAMPLE0001'),
 			'amount' => $request->setAmount('0.50'),
@@ -46,16 +57,16 @@ class Payment {
 			'remark' => $request->setRemark('Some remarks here..'),
 			'lang' => $request->setLang('UTF-8'),
 			'signature' => $request->getSignature(),
-			'responseUrl' => $request->setResponseUrl('http://example.com/response'),
-			'backendUrl' => $request->setBackendUrl('http://example.com/backend')
+			'responseUrl' => $request->setResponseUrl($this->payment_response),
+			'backendUrl' => $request->setBackendUrl($this->backend_response)
 			);
 
-		IPay88\Payment\Request::make($this->_merchantKey, $this->_data);
+		IPay88\Payment\Request::make($this->merchantKey, $this->_data);
 	}
 	
 	public function response()
 	{	
-		$response = (new IPay88\Payment\Response)->init($this->_merchantCode);
+		$response = (new IPay88\Payment\Response)->init($this->merchantCode);
 		echo "<pre>";
 		print_r($response);
 	}
