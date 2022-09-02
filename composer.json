@@ -1,8 +1,8 @@
 {
-    "name": "karyamedia/ipay88",
+    "name": "alvarezallen99/ipay88",
     "description": "Ipay88 payment gateway module",
-    "keywords": ["ipay", "malaysia", "api"],
-    "homepage": "https://github.com/karyamedia/ipay88",
+    "keywords": ["ipay", "philippines", "api"],
+    "homepage": "https://github.com/alvarezallen99/ipay88",
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -11,12 +11,8 @@
     },
     "authors": [
         {
-            "name": "Fikri Marhan",
-            "email": "fikri.marhan@gmail.com"
-        },
-        {
-            "name": "aa6my",
-            "email": "aa6my@qq.com"
+            "name": "Allen Alvarez",
+            "email": "alvarezallen99@gmail.com"
         }
     ],
     "minimum-stability": "stable",
