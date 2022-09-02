@@ -8,18 +8,15 @@ use IPay88\View\RequestForm;
 class Request
 {
 	const ENV_IPAY88_URL = 'IPAY88_URL';
-	const DEFAULT_IPAY88_URL = 'https://sandbox.ipay88.com.ph/epayment/entry.asp';
-
-	public static $paymentUrl;
+	public static $paymentUrl = 'https://sandbox.ipay88.com.ph/epayment/entry.asp';
 
 	private $merchantKey;
 
 	public function __construct($merchantKey)
 	{
 		$this->merchantKey = $merchantKey;
-		$this->paymentUrl = self::DEFAULT_IPAY88_URL;
 		if(getenv(self::ENV_IPAY88_URL)) {
-			$this->paymentUrl = 'https://' . getenv(self::ENV_IPAY88_URL) . '/epayment/entry.asp';
+			self::$paymentUrl = 'https://' . getenv(self::ENV_IPAY88_URL) . '/epayment/entry.asp';
 		}
 	}
 

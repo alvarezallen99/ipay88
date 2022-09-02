@@ -12,7 +12,7 @@ class Response
     {
         $this->merchantKey = $merchantKey;
         if (getenv(self::ENV_IPAY88_URL)) {
-            $this->validReferrer = getenv(self::ENV_IPAY88_URL);
+            self::$validReferrer = getenv(self::ENV_IPAY88_URL);
         }
     }
 

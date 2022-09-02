@@ -12,7 +12,7 @@ class Response
 	public function __construct()
 	{
 		if (getenv(self::ENV_IPAY88_URL)) {
-			$this->requeryUrl = 'https://' . getenv(self::ENV_IPAY88_URL) . '/epayment/enquiry.asp';
+			self::$requeryUrl = 'https://' . getenv(self::ENV_IPAY88_URL) . '/epayment/enquiry.asp';
 		}
 	}
 
