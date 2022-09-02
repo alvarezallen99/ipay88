@@ -207,23 +207,26 @@ class Request
     public static function getPaymentOptions($multiCurrency = true)
     {
 		$phpOnly = array(
-			2 => array('Credit Card', 'PHP'),
-			6 => array('Maybank2U', 'PHP'),
-			8 => array('Alliance Online', 'PHP'),
-			10 => array('AmOnline', 'PHP'),
-			14 => array('RHB Online', 'PHP'),
-			15 => array('Hong Leong Online', 'PHP'),
-			16 => array('FPX', 'PHP'),
-			20 => array('CIMB Click', 'PHP'),
-			22 => array('Web Cash', 'PHP'),
-			48 => array('PayPal', 'PHP'),
-			100 => array('Celcom AirCash', 'PHP'),
-			102 => array('Bank Rakyat Internet Banking', 'PHP'),
-			103 => array('AffinOnline', 'PHP')
+			1 => array('Credit Card', 'PHP'),
+			3 => array('GCash', 'PHP'),
+			5 => array('Bancnet', 'PHP'),
+			6 => array('Paypal', 'PHP'),
+			18 => array('DragonPay Online', 'PHP'),
+			19 => array('DragonPay OTC Non-Bank', 'PHP'),
+			20 => array('DragonPay OTC Bank', 'PHP'),
+			22 => array('Pay4Me', 'PHP'),
+			25 => array('Credit Card Pre-Auth', 'PHP'),
+			33 => array('WeChat Scan', 'PHP'),
+			34 => array('WeChat QR', 'PHP'),
+			35 => array('Alipay QR', 'PHP'),
+			36 => array('Alipay Scan', 'PHP'),
+			37 => array('BDO Installment', 'PHP'),
+			38 => array('GrabPay', 'PHP'),
+			48 => array('7/11', 'PHP'),
 		);
 
 		$multiCurrency = array(
-			25 => array('Credit Card', 'USD'),
+			7 => array('Credit Card', 'USD'),
 			35 => array('Credit Card', 'GBP'),
 			36 => array('Credit Card', 'THB'),
 			37 => array('Credit Card', 'CAD'),
