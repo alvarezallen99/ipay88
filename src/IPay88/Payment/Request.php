@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace IPay88\Payment;
 
@@ -7,14 +7,21 @@ use IPay88\View\RequestForm;
 
 class Request
 {
-    public static $paymentUrl = 'https://payment.ipay88.com.ph/epayment/entry.asp';
+	const ENV_IPAY88_URL = 'IPAY88_URL';
+	const DEFAULT_IPAY88_URL = 'https://sandbox.ipay88.com.ph/epayment/entry.asp';
+
+	public static $paymentUrl;
 
 	private $merchantKey;
 
 	public function __construct($merchantKey)
-    {
-    	$this->merchantKey = $merchantKey;
-    }
+	{
+		$this->merchantKey = $merchantKey;
+		$this->paymentUrl = self::DEFAULT_IPAY88_URL;
+		if(getenv(self::ENV_IPAY88_URL)) {
+			$this->paymentUrl = 'https://' . getenv(self::ENV_IPAY88_URL) . '/epayment/entry.asp';
+		}
+	}
 
 	private $merchantCode;
 	public function getMerchantCode()
@@ -188,7 +195,7 @@ class Request
 	*  Override `$fillable_fields` to determine what value can be set during this factory method
 	* @example
 	*  $request = IPay88\Payment\Request::make($merchantKey, $fieldValues)
-	* 
+	*
 	*/
 	public static function make($merchantKey, $fieldValues)
 	{
@@ -202,36 +209,36 @@ class Request
     */
     public static function getPaymentOptions($multiCurrency = true)
     {
-        $myrOnly = array(
-        	2 => array('Credit Card','MYR'),
-        	6 => array('Maybank2U','MYR'),
-        	8 => array('Alliance Online','MYR'),
-        	10=> array('AmOnline','MYR'),
-        	14=> array('RHB Online','MYR'),
-        	15=> array('Hong Leong Online','MYR'),
-        	16=> array('FPX','MYR'),
-        	20=> array('CIMB Click', 'MYR'),
-        	22=> array('Web Cash','MYR'),
-        	48=> array('PayPal','MYR'),
-        	100 => array('Celcom AirCash','MYR'),
-        	102 => array('Bank Rakyat Internet Banking','MYR'),
-        	103 => array('AffinOnline','MYR')
-        );
+		$phpOnly = array(
+			2 => array('Credit Card', 'PHP'),
+			6 => array('Maybank2U', 'PHP'),
+			8 => array('Alliance Online', 'PHP'),
+			10 => array('AmOnline', 'PHP'),
+			14 => array('RHB Online', 'PHP'),
+			15 => array('Hong Leong Online', 'PHP'),
+			16 => array('FPX', 'PHP'),
+			20 => array('CIMB Click', 'PHP'),
+			22 => array('Web Cash', 'PHP'),
+			48 => array('PayPal', 'PHP'),
+			100 => array('Celcom AirCash', 'PHP'),
+			102 => array('Bank Rakyat Internet Banking', 'PHP'),
+			103 => array('AffinOnline', 'PHP')
+		);
 
-        $nonMyr = array(
-        	25=> array('Credit Card','USD'),
-        	35=> array('Credit Card','GBP'),
-        	36=> array('Credit Card','THB'),
-        	37=> array('Credit Card','CAD'),
-        	38=> array('Credit Card','SGD'),
-        	39=> array('Credit Card','AUD'),
-        	40=> array('Credit Card','MYR'),
-        	41=> array('Credit Card','EUR'),
-        	42=> array('Credit Card','HKD'),
-        );
+		$multiCurrency = array(
+			25 => array('Credit Card', 'USD'),
+			35 => array('Credit Card', 'GBP'),
+			36 => array('Credit Card', 'THB'),
+			37 => array('Credit Card', 'CAD'),
+			38 => array('Credit Card', 'SGD'),
+			39 => array('Credit Card', 'AUD'),
+			40 => array('Credit Card', 'MYR'),
+			41 => array('Credit Card', 'EUR'),
+			42 => array('Credit Card', 'HKD'),
+		);
 
-        return $multiCurrency ? $nonMyr : $myrOnly;
+		return $multiCurrency ? $multiCurrency : $phpOnly;
     }
 
-    
+
 }

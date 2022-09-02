@@ -1,4 +1,4 @@
-<?php 
+<?php
 use IPay88\RequestForm;
 
 class IPay88
@@ -15,20 +15,20 @@ class IPay88
 		$this->responseUrl = $responseUrl;
 		$this->backendResponseUrl = $backendResponseUrl;
 	}
-	
+
 	/**
-     * Generate signature to be used for transaction.
-     *
-     * You may verify your signature with online tool provided by iPay88
-     * http://www.mobile88.com/epayment/testing/TestSignature.asp
-     *
-     * @access public
-     * @param string $merchantKey ProvidedbyiPay88OPSGandsharebetweeniPay88and merchant only
-     * @param string $merchantCode Merchant Code provided by iPay88 and use to uniquely identify the Merchant.
-     * @param string $refNo Unique merchant transaction id
-     * @param int $amount Payment amount
-     * @param string $currency Payment currency
-     */
+	 * Generate signature to be used for transaction.
+	 *
+	 * You may verify your signature with online tool provided by iPay88
+	 * http://payment.ipay88.com.ph/epayment/testing/TestSignature.asp
+	 *
+	 * @access public
+	 * @param string $merchantKey ProvidedbyiPay88OPSGandsharebetweeniPay88and merchant only
+	 * @param string $merchantCode Merchant Code provided by iPay88 and use to uniquely identify the Merchant.
+	 * @param string $refNo Unique merchant transaction id
+	 * @param int $amount Payment amount
+	 * @param string $currency Payment currency
+	 */
     public function generateSignature($refNo, $amount, $currency)
     {
         $stringToHash = $this->merchantKey.$this->merchantCode.$refNo.$amount.$currency;
@@ -45,7 +45,7 @@ class IPay88
     private function _hex2bin($source)
     {
     	$bin = null;
-    	for ($i=0; $i < strlen($source); $i=$i+2) { 
+    	for ($i=0; $i < strlen($source); $i=$i+2) {
     		$bin .= chr(hexdec(substr($source, $i, 2)));
     	}
     	return $bin;
@@ -53,24 +53,24 @@ class IPay88
 
     /**
     * @access public
-    * @param boolean $multiCurrency Set to true to get payments optinos for multi currency gateway
+    * @param boolean $multiCurrency Set to true to get payments options for multi currency gateway
     */
     public static function getPaymentOptions($multiCurrency = false)
     {
-        $myrOnly = array(
-        	2 => array('Credit Card','MYR'),
-        	6 => array('Maybank2U','MYR'),
-        	8 => array('Alliance Online','MYR'),
-        	10=> array('AmOnline','MYR'),
-        	14=> array('RHB Online','MYR'),
-        	15=> array('Hong Leong Online','MYR'),
-        	16=> array('FPX','MYR'),
-        	20=> array('CIMB Click', 'MYR'),
-        	22=> array('Web Cash','MYR'),
-        	48=> array('PayPal','MYR'),
-        	100 => array('Celcom AirCash','MYR'),
-        	102 => array('Bank Rakyat Internet Banking','MYR'),
-        	103 => array('AffinOnline','MYR')
+        $phpOnly = array(
+        	2 => array('Credit Card','PHP'),
+        	6 => array('Maybank2U','PHP'),
+        	8 => array('Alliance Online','PHP'),
+        	10=> array('AmOnline','PHP'),
+        	14=> array('RHB Online','PHP'),
+        	15=> array('Hong Leong Online','PHP'),
+        	16=> array('FPX','PHP'),
+        	20=> array('CIMB Click', 'PHP'),
+        	22=> array('Web Cash','PHP'),
+        	48=> array('PayPal','PHP'),
+        	100 => array('Celcom AirCash','PHP'),
+        	102 => array('Bank Rakyat Internet Banking','PHP'),
+        	103 => array('AffinOnline','PHP')
         	);
 
         $multiCurrency = array(
@@ -85,12 +85,12 @@ class IPay88
         	42=> array('Credit Card','HKD'),
         	);
 
-        return $multiCurrency ? $multiCurrency : $myrOnly;
+        return $multiCurrency ? $multiCurrency : $phpOnly;
     }
 
     /**
     * @access public
-    * @param 
+    * @param
     */
     public function makeRequestForm($args)
     {

@@ -6,7 +6,15 @@ use IPay88\Security\Signature;
 
 class Response
 {
-	public static $requeryUrl = 'https://payment.ipay88.com.ph/epayment/enquiry.asp';
+	const ENV_IPAY88_URL = 'IPAY88_URL';
+	public static $requeryUrl = 'https://sandbox.ipay88.com.ph/epayment/enquiry.asp';
+
+	public function __construct()
+	{
+		if (getenv(self::ENV_IPAY88_URL)) {
+			$this->requeryUrl = 'https://' . getenv(self::ENV_IPAY88_URL) . '/epayment/enquiry.asp';
+		}
+	}
 
 	private $return;
 	public function init($merchantCode, $requery = TRUE, $return_data = TRUE) {
@@ -54,7 +62,7 @@ class Response
 	* - Payment fail       - Payment failed.
 	* - M88Admin           - Payment status updated by Mobile88 Admin (Fail)
 	*/
-  
+
 	public function requery($payment_details) {
 		if (!function_exists('curl_init')) {
 			trigger_error('PHP cURL extension is required.');

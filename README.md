@@ -1,7 +1,7 @@
-# IPay88
+# IPay88 Philippines
 [![Build Status](https://img.shields.io/packagist/dt/karyamedia/ipay88.svg?maxAge=2592000)](https://packagist.org/packages/karyamedia/ipay88) [![Join the chat at https://gitter.im/karyamedia/ipay88](https://badges.gitter.im/karyamedia/ipay88.svg)](https://gitter.im/karyamedia/ipay88?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Ipay88 payment gateway module.
+Ipay88 Philippines Payment Gateway Module.
 
 **NOTE**: Your require to request demo account from techsupport@ipay88.com.my
 
@@ -15,9 +15,9 @@ composer require alvarezallen99/ipay88 dev-master
 
 ## env
 ```bash
-IPAY88_URL=""
-IPAY88_MERCHANT_CODE=""
-IPAY88_MERCHANT_KEY=""
+IPAY88_URL="sandbox.ipay88.com.ph"
+IPAY88_MERCHANT_CODE="IPAY88_MERCHANT_CODE"
+IPAY88_MERCHANT_KEY="IPAY88_MERCHANT_KEY"
 ```
 
 ## Example Controller
@@ -63,9 +63,9 @@ class Payment {
 
 		IPay88\Payment\Request::make($this->merchantKey, $this->_data);
 	}
-	
+
 	public function response()
-	{	
+	{
 		$response = (new IPay88\Payment\Response)->init($this->merchantCode);
 		echo "<pre>";
 		print_r($response);

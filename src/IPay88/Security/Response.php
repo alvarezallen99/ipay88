@@ -4,12 +4,16 @@ namespace IPay88\Security;
 
 class Response
 {
+    const ENV_IPAY88_URL = 'IPAY88_URL';
 	private $merchantKey;
-	public static $validReferrer = "www.mobile88.com";
+	public static $validReferrer = "sandbox.ipay88.com.ph";
 
     public function __construct($merchantKey)
     {
         $this->merchantKey = $merchantKey;
+        if (getenv(self::ENV_IPAY88_URL)) {
+            $this->validReferrer = getenv(self::ENV_IPAY88_URL);
+        }
     }
 
     public function validate($response)
