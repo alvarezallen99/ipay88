@@ -1,5 +1,5 @@
 # IPay88 Philippines
-[![Build Status](https://img.shields.io/packagist/dt/karyamedia/ipay88.svg?maxAge=2592000)](https://packagist.org/packages/karyamedia/ipay88) [![Join the chat at https://gitter.im/karyamedia/ipay88](https://badges.gitter.im/karyamedia/ipay88.svg)](https://gitter.im/karyamedia/ipay88?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://img.shields.io/packagist/dt/alvarezallen99/ipay88.svg?maxAge=2592000)](https://packagist.org/packages/alvarezallen99/ipay88) [![Join the chat at https://gitter.im/alvarezallen99/ipay88](https://badges.gitter.im/alvarezallen99/ipay88.svg)](https://gitter.im/alvarezallen99/ipay88?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Ipay88 Philippines Payment Gateway Module.
 
