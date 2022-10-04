@@ -212,7 +212,7 @@ class Request
      * IPay88 Payment Request factory function.
      *
      * @param string $merchantKey The merchant key provided by ipay88
-     * @param hash   $fieldValues Set of field value that is to be set as the properties
+     * @param array  $fieldValues Set of field value that is to be set as the properties
      *                            Override `$fillable_fields` to determine what value can be set during this factory method
      *
      * @example
