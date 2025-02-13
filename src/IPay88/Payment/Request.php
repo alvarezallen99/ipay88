@@ -12,11 +12,14 @@ class Request
 
     private $merchantKey;
 
-    public function __construct($merchantKey)
+    public function __construct($merchantKey, $requeryUrl = null)
     {
         $this->merchantKey = $merchantKey;
         if (getenv(self::ENV_IPAY88_URL)) {
             self::$paymentUrl = 'https://'.getenv(self::ENV_IPAY88_URL).'/epayment/entry.asp';
+        }
+        if ($requeryUrl) {
+            self::$paymentUrl = 'https://'.$requeryUrl.'/epayment/entry.asp';
         }
     }
 

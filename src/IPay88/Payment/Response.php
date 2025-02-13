@@ -7,10 +7,13 @@ class Response
     public const ENV_IPAY88_URL = 'ENV_IPAY88_URL';
     public static $requeryUrl = 'https://sandbox.ipay88.com.ph/epayment/enquiry.asp';
 
-    public function __construct()
+    public function __construct($requeryUrl = null)
     {
         if (getenv(self::ENV_IPAY88_URL)) {
             self::$requeryUrl = 'https://'.getenv(self::ENV_IPAY88_URL).'/epayment/enquiry.asp';
+        }
+        if ($requeryUrl) {
+            self::$requeryUrl = 'https://'.$requeryUrl.'/epayment/enquiry.asp';
         }
     }
 

@@ -8,11 +8,14 @@ class Response
     private $merchantKey;
     public static $validReferrer = 'sandbox.ipay88.com.ph';
 
-    public function __construct($merchantKey)
+    public function __construct($merchantKey, $validReferrer = null)
     {
         $this->merchantKey = $merchantKey;
         if (getenv(self::ENV_IPAY88_URL)) {
             self::$validReferrer = getenv(self::ENV_IPAY88_URL);
+        }
+        if ($validReferrer) {
+            self::$validReferrer = $validReferrer;
         }
     }
 
@@ -30,7 +33,7 @@ class Response
             preg_replace('/[\.\,]/', '', $response->getAmount()), //clear ',' and '.'
             $response->getCurrency(),
             $response->getStatus()
-            );
+        );
 
         if ($response->getSignature() !== $sig) {
             throw new Exceptions\InvalidSignatureException();
