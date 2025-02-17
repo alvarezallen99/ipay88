@@ -232,7 +232,7 @@ class Request
      */
     public static function make($merchantKey, $fieldValues)
     {
-        // $request = new Request($merchantKey);
+        new Request($merchantKey);
         RequestForm::render($fieldValues, self::$paymentUrl);
     }
 
