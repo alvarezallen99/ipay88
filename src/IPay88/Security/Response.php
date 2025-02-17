@@ -8,15 +8,19 @@ class Response
     private $merchantKey;
     public static $validReferrer = 'sandbox.ipay88.com.ph';
 
-    public function __construct($merchantKey, $validReferrer = null)
+    public function __construct($merchantKey)
     {
         $this->merchantKey = $merchantKey;
         if (getenv(self::ENV_IPAY88_URL)) {
             self::$validReferrer = getenv(self::ENV_IPAY88_URL);
         }
-        if ($validReferrer) {
-            self::$validReferrer = $validReferrer;
-        }
+    }
+
+    public function setEnvSuffix($val)
+    {
+        self::$validReferrer = getenv(self::ENV_IPAY88_URL).$val;
+
+        return self::$validReferrer;
     }
 
     public function validate($response)
