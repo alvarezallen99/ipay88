@@ -9,6 +9,7 @@ class Request
 {
     public const ENV_IPAY88_URL = 'ENV_IPAY88_URL';
     public static $paymentUrl = 'https://sandbox.ipay88.com.ph/epayment/entry.asp';
+    public static $envSuffix = '';
 
     private $merchantKey;
 
@@ -20,11 +21,15 @@ class Request
         }
     }
 
-    public function setEnvSuffix($val)
+    public static function setEnvSuffix($val)
     {
-        self::$paymentUrl = 'https://'.getenv(self::ENV_IPAY88_URL.$val).'/epayment/entry.asp';
+        self::$envSuffix = $val;
+        self::$paymentUrl = 'https://'.getenv(self::ENV_IPAY88_URL.self::$envSuffix).'/epayment/entry.asp';
+    }
 
-        return self::$paymentUrl;
+    public static function getEnvSuffix()
+    {
+        return self::$envSuffix;
     }
 
     private $merchantCode;
@@ -228,7 +233,7 @@ class Request
     public static function make($merchantKey, $fieldValues)
     {
         $request = new Request($merchantKey);
-        RequestForm::render($fieldValues, self::$paymentUrl);
+        RequestForm::render($fieldValues, self::$paymentUrl, self::$envSuffix);
     }
 
     /**

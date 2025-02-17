@@ -6,6 +6,7 @@ class Response
 {
     public const ENV_IPAY88_URL = 'ENV_IPAY88_URL';
     public static $requeryUrl = 'https://sandbox.ipay88.com.ph/epayment/enquiry.asp';
+    public static $envSuffix = '';
 
     public function __construct()
     {
@@ -18,9 +19,13 @@ class Response
 
     public function setEnvSuffix($val)
     {
-        self::$requeryUrl = 'https://'.getenv(self::ENV_IPAY88_URL.$val).'/epayment/enquiry.asp';
+        self::$envSuffix = $val;
+        self::$requeryUrl = 'https://'.getenv(self::ENV_IPAY88_URL.self::$envSuffix).'/epayment/enquiry.asp';
+    }
 
-        return self::$requeryUrl;
+    public static function getEnvSuffix()
+    {
+        return self::$envSuffix;
     }
 
     public function init($merchantCode, $requery = true, $return_data = true)
