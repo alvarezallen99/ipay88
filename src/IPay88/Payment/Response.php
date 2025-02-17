@@ -18,7 +18,7 @@ class Response
 
     public function setEnvSuffix($val)
     {
-        self::$requeryUrl = 'https://'.getenv(self::ENV_IPAY88_URL).$val.'/epayment/enquiry.asp';
+        self::$requeryUrl = 'https://'.getenv(self::ENV_IPAY88_URL.$val).'/epayment/enquiry.asp';
 
         return self::$requeryUrl;
     }

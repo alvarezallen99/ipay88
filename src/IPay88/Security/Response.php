@@ -18,7 +18,7 @@ class Response
 
     public function setEnvSuffix($val)
     {
-        self::$validReferrer = getenv(self::ENV_IPAY88_URL).$val;
+        self::$validReferrer = getenv(self::ENV_IPAY88_URL.$val);
 
         return self::$validReferrer;
     }

@@ -22,7 +22,7 @@ class Request
 
     public function setEnvSuffix($val)
     {
-        self::$paymentUrl = 'https://'.getenv(self::ENV_IPAY88_URL).$val.'/epayment/entry.asp';
+        self::$paymentUrl = 'https://'.getenv(self::ENV_IPAY88_URL.$val).'/epayment/entry.asp';
 
         return self::$paymentUrl;
     }
