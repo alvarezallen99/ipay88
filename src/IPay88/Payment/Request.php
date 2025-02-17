@@ -232,8 +232,8 @@ class Request
      */
     public static function make($merchantKey, $fieldValues)
     {
-        $request = new Request($merchantKey);
-        RequestForm::render($fieldValues, self::$paymentUrl, self::$envSuffix);
+        // $request = new Request($merchantKey);
+        RequestForm::render($fieldValues, self::$paymentUrl);
     }
 
     /**
